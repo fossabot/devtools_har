@@ -194,4 +194,9 @@ class HarRequest<T extends HarCookie> extends HarObject {
     },
     includeNulls: includeNulls, // Dart 3.8 formatting.
   );
+
+  @override
+  String toString() =>
+      // ignore: avoid-default-tostring, it's enum.
+      '''HarRequest(${['$kMethod: $method', '$kUrl: $url', '$kHttpVersion: $httpVersion', '$kCookies: $cookies', '$kHeaders: $headers', '$kQueryString: $queryString', if (postData != null) '$kPostData: $postData', '$kHeadersSize: $headersSize', '$kBodySize: $bodySize', if (comment != null) '${HarObject.kComment}: $comment', if (custom.isNotEmpty) '${HarObject.kCustom}: $custom'].join(', ')})''';
 }

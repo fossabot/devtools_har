@@ -83,6 +83,9 @@ class HarCookie extends HarObject {
   /// JSON key for the secure flag (`"secure"`).
   static const kSecure = 'secure';
 
+  /// Internal key for preserving the original expiration string.
+  static const kExpiresRaw = 'expiresRaw';
+
   /// The name of the cookie.
   ///
   /// Required by the HAR 1.2 spec.
@@ -135,4 +138,8 @@ class HarCookie extends HarObject {
     },
     includeNulls: includeNulls, // Dart 3.8 formatting.
   );
+
+  @override
+  String toString() =>
+      '''HarCookie(${['$kName: $name', '$kValue: $value', if (path != null) '$kPath: $path', if (domain != null) '$kDomain: $domain', if (expires != null) '$kExpires: $expires', if (expiresRaw != null) '$kExpiresRaw: $expiresRaw', if (httpOnly != null) '$kHttpOnly: $httpOnly', if (secure != null) '$kSecure: $secure', if (comment != null) '${HarObject.kComment}: $comment', if (custom.isNotEmpty) '${HarObject.kCustom}: $custom'].join(', ')})''';
 }

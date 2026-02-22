@@ -81,6 +81,9 @@ class HarPage extends HarObject {
   /// JSON key for the page load timings object (`"pageTimings"`).
   static const kPageTimings = 'pageTimings';
 
+  /// Internal key for preserving the original start timestamp string.
+  static const kStartedDateTimeRaw = 'startedDateTimeRaw';
+
   /// Date and time stamp for the beginning of the page load
   /// (ISO 8601 format).
   ///
@@ -121,6 +124,10 @@ class HarPage extends HarObject {
     },
     includeNulls: includeNulls, // Dart 3.8 formatting.
   );
+
+  @override
+  String toString() =>
+      '''HarPage(${['$kStartedDateTime: $startedDateTime', if (startedDateTimeRaw != null) '$kStartedDateTimeRaw: $startedDateTimeRaw', '$kId: $id', '$kTitle: $title', '$kPageTimings: $pageTimings', if (comment != null) '${HarObject.kComment}: $comment', if (custom.isNotEmpty) '${HarObject.kCustom}: $custom'].join(', ')})''';
 }
 
 /// Page-level load timing milestones.
@@ -198,4 +205,8 @@ class HarPageTimings extends HarObject {
     },
     includeNulls: includeNulls, // Dart 3.8 formatting.
   );
+
+  @override
+  String toString() =>
+      '''HarPageTimings(${[if (onContentLoad != null) '$kOnContentLoad: $onContentLoad', if (onLoad != null) '$kOnLoad: $onLoad', if (comment != null) '${HarObject.kComment}: $comment', if (custom.isNotEmpty) '${HarObject.kCustom}: $custom'].join(', ')})''';
 }

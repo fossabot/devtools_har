@@ -59,6 +59,10 @@ class HarCache extends HarObject {
     },
     includeNulls: includeNulls, // Dart 3.8 formatting.
   );
+
+  @override
+  String toString() =>
+      '''HarCache(${[if (beforeRequest != null) '$kBeforeRequest: $beforeRequest', if (afterRequest != null) '$kAfterRequest: $afterRequest', if (comment != null) '${HarObject.kComment}: $comment', if (custom.isNotEmpty) '${HarObject.kCustom}: $custom'].join(', ')})''';
 }
 
 /// State of a cache entry (before or after the request).
@@ -127,6 +131,12 @@ class HarCacheEntry extends HarObject {
   /// JSON key for the cache hit count (`"hitCount"`).
   static const kHitCount = 'hitCount';
 
+  /// Internal key for preserving the original expiration string.
+  static const kExpiresRaw = 'expiresRaw';
+
+  /// Internal key for preserving the original last access string.
+  static const kLastAccessRaw = 'lastAccessRaw';
+
   /// Expiration time of the cache entry. `null` when not available.
   final DateTime? expires;
 
@@ -156,4 +166,8 @@ class HarCacheEntry extends HarObject {
     },
     includeNulls: includeNulls, // Dart 3.8 formatting.
   );
+
+  @override
+  String toString() =>
+      '''HarCacheEntry(${[if (expires != null) '$kExpires: $expires', if (expiresRaw != null) '$kExpiresRaw: $expiresRaw', '$kLastAccess: $lastAccess', if (lastAccessRaw != null) '$kLastAccessRaw: $lastAccessRaw', '$kETag: $eTag', '$kHitCount: $hitCount', if (comment != null) '${HarObject.kComment}: $comment', if (custom.isNotEmpty) '${HarObject.kCustom}: $custom'].join(', ')})''';
 }

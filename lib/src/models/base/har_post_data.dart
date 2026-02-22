@@ -108,6 +108,10 @@ class HarPostData extends HarObject {
     },
     includeNulls: includeNulls, // Dart 3.8 formatting.
   );
+
+  @override
+  String toString() =>
+      '''HarPostData(${['$kMimeType: $mimeType', if (params.isNotEmpty) '$kParams: $params', if (text != null) '$kText: $text', if (comment != null) '${HarObject.kComment}: $comment', if (custom.isNotEmpty) '${HarObject.kCustom}: $custom'].join(', ')})''';
 }
 
 /// A single posted parameter (embedded in a [HarPostData] object).
@@ -195,4 +199,8 @@ class HarParam extends HarObject {
     },
     includeNulls: includeNulls, // Dart 3.8 formatting.
   );
+
+  @override
+  String toString() =>
+      '''HarParam(${['$kName: $name', if (value != null) '$kValue: $value', if (fileName != null) '$kFileName: $fileName', if (contentType != null) '$kContentType: $contentType', if (comment != null) '${HarObject.kComment}: $comment', if (custom.isNotEmpty) '${HarObject.kCustom}: $custom'].join(', ')})''';
 }
